@@ -1,7 +1,7 @@
 import os
 import sys
-import common
 from datetime import datetime
+from  common import *
 
 variables=['OS_USERNAME', 'OS_PASSWORD', 'OS_TENANT_ID', 'OS_AUTH_URL', 'OS_COMPUTE_URL']
 err=0
@@ -31,10 +31,10 @@ backup_type=sys.argv[3]
 rotation=sys.argv[4]
 #########################################################
 
-token=authenticate(os_username, os_password, os_tenant_id, os_auth_url)
+token=token(os_username, os_password, os_tenant_id, os_auth_url)
 
 date=datetime.now()
 pattern=str(date.year) + str(date.month) + str(date.day) + str(date.hour) + str(date.minute)
 backup_name=instance_name + "-"  + pattern + "-" + backup_type
 
-backup(os_auth_url, token, instance_id, backup_name, backup_type, rotation)
+backup(os_compute_url, token, instance_id, backup_name, backup_type, rotation)
